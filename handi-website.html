@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handi Technologies - Connecting Care, Creating Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B3D;
+            --secondary: #FF8A5B;
+            --dark: #1A1A1A;
+            --light: #F8F6F3;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: #6B7280;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #4B5563;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white !important;
+            padding: 0.625rem 1.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            box-shadow: 0 10px 25px rgba(255, 107, 61, 0.3);
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10rem 1.5rem 6rem;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 61, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 138, 91, 0.08) 0%, transparent 50%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-badge span {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: #4B5563;
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 20px 40px rgba(255, 107, 61, 0.3);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 2px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid #E5E7EB;
+        }
+
+        .stat-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #4B5563;
+            font-weight: 500;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Section */
+        section {
+            padding: clamp(4rem, 10vw, 8rem) 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.2;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            color: #6B7280;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid #F3F4F6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 107, 61, 0.15);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text {
+            color: #6B7280;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Backgrounds */
+        .bg-white {
+            background: white;
+        }
+
+        .bg-light {
+            background: var(--light);
+        }
+
+        .bg-gradient {
+            background: linear-gradient(to bottom, white, var(--light));
+        }
+
+        .bg-gradient-reverse {
+            background: linear-gradient(to bottom, var(--light), white);
+        }
+
+        .bg-dark {
+            background: var(--dark);
+            color: white;
+        }
+
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        /* Quote */
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 3rem;
+            border-radius: 1.5rem;
+            color: white;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+        }
+
+        .quote-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .quote-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .quote-text p {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .quote-text cite {
+            opacity: 0.8;
+            font-style: normal;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 12rem;
+            height: 12rem;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 0.25rem;
+        }
+
+        .team-photo-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            overflow: hidden;
+        }
+
+        .team-photo-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-grid .team-member:nth-child(3) .team-photo-inner img {
+            object-position: 75% center;
+        }
+
+        .team-name {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #6B7280;
+            font-weight: 500;
+        }
+
+        /* Dark Card */
+        .dark-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* List */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list .icon {
+            font-size: 2rem;
+        }
+
+        /* Grid layouts */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .two-col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .three-col {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Mission/Vision boxes */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .mission-vision {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 3rem;
+            border-radius: 1.5rem;
+            color: white;
+        }
+
+        .vision-box {
+            background: var(--dark);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            color: white;
+        }
+
+        .mission-box h3,
+        .vision-box h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-box p,
+        .vision-box p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), #FFA07A);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            opacity: 0.95;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-logo span {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .footer-tagline {
+            opacity: 0.8;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Utilities */
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const Navigation = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
+                    <div className="nav-inner">
+                        <a href="#" className="logo">
+                            <div className="logo-icon">
+                                <img src="images/logo.jpg" alt="Handi Logo" />
+                            </div>
+                            <div className="logo-text">
+                                <h1>Handi</h1>
+                                <p>Connecting Care, Creating Community</p>
+                            </div>
+                        </a>
+                        <div className="nav-links">
+                            <a href="#problem">Problem</a>
+                            <a href="#solution">Solution</a>
+                            <a href="#model">Business Model</a>
+                            <a href="#team">Team</a>
+                            <a href="https://www.canva.com/design/DAG14Aag4II/mbphR8KA6U9ITlBhL3KWVg/edit?utm_content=DAG14Aag4II&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener noreferrer">Pitch Deck</a>
+                            <a href="#contact" className="nav-cta">Get Started</a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <section className="hero">
+                    <div className="container">
+                        <div className="hero-badge fade-in">
+                            <span>Creating Solutions to Promote Senior Independence</span>
+                        </div>
+                        
+                        <h1 className="fade-in">
+                            Empowering Seniors Through{' '}
+                            <span className="gradient-text">Community Connection</span>
+                        </h1>
+                        
+                        <p className="fade-in">
+                            A voice-enabled platform that connects volunteers with seniors to provide assistance with basic needs for comfortable, independent living.
+                        </p>
+                        
+                        <div className="btn-group fade-in">
+                            <a href="#solution" className="btn btn-primary">See How It Works</a>
+                            <a href="#contact" className="btn btn-secondary">Request Demo</a>
+                        </div>
+
+                        <div className="stats fade-in">
+                            <div className="stat-card">
+                                <div className="stat-number">27K+</div>
+                                <p>Seniors in Worcester</p>
+                            </div>
+                            <div className="stat-card">
+                                <div className="stat-number">606</div>
+                                <p>ER Visits per 1000 Seniors</p>
+                            </div>
+                            <div className="stat-card">
+                                <div className="stat-number">100%</div>
+                                <p>Would Use Handi Again</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Problem = () => {
+            const problems = [
+                { icon: '🍽️', title: 'Food Insecurity', description: 'Limited access to nutritious meals and groceries' },
+                { icon: '😔', title: 'Social Isolation', description: 'Disconnection from community and support networks' },
+                { icon: '💻', title: 'Technical Difficulty', description: 'Struggling with modern technology and digital services' },
+                { icon: '🚗', title: 'Transportation Barriers', description: 'Difficulty accessing medical appointments and errands' },
+                { icon: '📋', title: 'Administrative Tasks', description: 'Challenges with forms, appointments, and paperwork' },
+                { icon: '🏥', title: 'Health Outcomes', description: 'High ER visits and Medicare readmissions' },
+            ];
+
+            return (
+                <section id="problem" className="bg-gradient">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label">The Challenge</span>
+                            <h2 className="section-title">Our Seniors Face Daily Challenges</h2>
+                            <p className="section-subtitle">
+                                Technology can connect us, but it's also a barrier for many older adults who lack tech savvy and access.
+                            </p>
+                        </div>
+
+                        <div className="card-grid">
+                            {problems.map((problem, index) => (
+                                <div key={index} className="card">
+                                    <div className="card-icon">{problem.icon}</div>
+                                    <h3 className="card-title">{problem.title}</h3>
+                                    <p className="card-text">{problem.description}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="quote-box">
+                            <div className="quote-content">
+                                <div className="quote-icon">💬</div>
+                                <div className="quote-text">
+                                    <p>"Technology was a way to connect, but also a barrier for many older adults. Not everyone can use it. Not everyone has the tech savvy and Wi-Fi."</p>
+                                    <cite>— CHA Focus Group Participant</cite>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Data = () => {
+            return (
+                <section className="bg-dark">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label" style={{color: 'var(--primary)'}}>By The Numbers</span>
+                            <h2 className="section-title">The Worcester Senior Population</h2>
+                        </div>
+
+                        <div className="card-grid mb-8">
+                            <div className="dark-card">
+                                <div className="stat-number" style={{color: 'var(--primary)'}}>58.1%</div>
+                                <p>Aged 65-74 years</p>
+                            </div>
+                            <div className="dark-card">
+                                <div className="stat-number" style={{color: 'var(--secondary)'}}>26.7%</div>
+                                <p>Aged 75-84 years</p>
+                            </div>
+                            <div className="dark-card">
+                                <div className="stat-number" style={{color: '#FFA07A'}}>24.5%</div>
+                                <p>With ambulatory difficulty</p>
+                            </div>
+                            <div className="dark-card">
+                                <div className="stat-number" style={{color: 'var(--primary)'}}>20%</div>
+                                <p>Medicare readmissions</p>
+                            </div>
+                        </div>
+
+                        <div className="two-col">
+                            <div className="dark-card">
+                                <h3 style={{fontSize: '1.5rem', fontFamily: 'Bricolage Grotesque', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--primary)'}}>Healthcare Utilization</h3>
+                                <ul className="feature-list">
+                                    <li><span className="icon">🚨</span> <span><strong>606.3</strong> ER visits per 1,000 seniors</span></li>
+                                    <li><span className="icon">💊</span> <span><strong>61.9</strong> prescriptions filled per senior</span></li>
+                                    <li><span className="icon">🏥</span> <span><strong>5.3%</strong> long-term service use</span></li>
+                                </ul>
+                            </div>
+
+                            <div className="dark-card">
+                                <h3 style={{fontSize: '1.5rem', fontFamily: 'Bricolage Grotesque', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--secondary)'}}>Transportation Access</h3>
+                                <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+                                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                        <span>West Worcester</span>
+                                        <strong>87.86%</strong>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                        <span>North Worcester</span>
+                                        <strong>78.82%</strong>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                        <span>Downtown</span>
+                                        <strong>65.45%</strong>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                        <span>Central City</span>
+                                        <strong>52.24%</strong>
+                                    </div>
+                                </div>
+                                <p style={{fontSize: '0.875rem', opacity: 0.7, marginTop: '1rem'}}>% of seniors 65+ who own vehicles</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Solution = () => {
+            const features = [
+                { icon: '📅', title: 'Administrative Hub', description: 'Schedule appointments, get reminders, and fill out forms with volunteer assistance', stat: '12 requests/month' },
+                { icon: '🚗', title: 'Transportation Hub', description: 'Request rides to appointments or errands from community volunteers', stat: '22 requests/month' },
+                { icon: '📋', title: 'Filling Forms', description: 'Get help with insurance, government, or medical forms', stat: '15 requests/month' },
+                { icon: '🗣️', title: 'Voice-Enabled', description: 'Simple voice commands make technology accessible to all seniors', stat: 'No tech skills needed' }
+            ];
+
+            return (
+                <section id="solution" className="bg-gradient-reverse">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label">Our Solution</span>
+                            <h2 className="section-title">Connecting Care Through Community</h2>
+                            <p className="section-subtitle">
+                                Handi Technologies empowers seniors with a voice-enabled platform that connects them with caring volunteers for daily support.
+                            </p>
+                        </div>
+
+                        <div className="mission-vision">
+                            <div className="mission-box">
+                                <h3>Our Mission</h3>
+                                <p>Create a voice-enabled platform that connects volunteers with seniors to provide assistance with basic needs to live comfortably and independently.</p>
+                            </div>
+                            <div className="vision-box">
+                                <h3>Our Vision</h3>
+                                <p>Becoming a global benchmark for quality and independent life for seniors that promotes wellbeing and community connection.</p>
+                            </div>
+                        </div>
+
+                        <div className="card-grid mb-8">
+                            {features.map((feature, index) => (
+                                <div key={index} className="card">
+                                    <div className="card-icon">{feature.icon}</div>
+                                    <h3 className="card-title">{feature.title}</h3>
+                                    <p className="card-text mb-4">{feature.description}</p>
+                                    <div style={{fontSize: '0.875rem', fontWeight: 600, color: 'var(--primary)'}}>{feature.stat}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div style={{background: 'linear-gradient(to right, #ECFDF5, #DBEAFE)', padding: '3rem', borderRadius: '1.5rem', border: '1px solid #D1FAE5', textAlign: 'center', maxWidth: '900px', margin: '0 auto'}}>
+                            <div style={{fontSize: '3.5rem', marginBottom: '1.5rem'}}>✅</div>
+                            <h3 style={{fontFamily: 'Bricolage Grotesque', fontWeight: 700, fontSize: '2rem', marginBottom: '1rem'}}>Proven User Satisfaction</h3>
+                            <p style={{fontSize: '1.125rem', color: '#4B5563', marginBottom: '2rem'}}>
+                                10 out of 10 beta testers rated the experience as "satisfied" or "very satisfied" and would definitely use Handi again.
+                            </p>
+                            <div style={{display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap'}}>
+                                <div>
+                                    <div style={{fontSize: '2rem', fontWeight: 700, color: '#059669'}}>Very Easy</div>
+                                    <div style={{fontSize: '0.875rem', color: '#6B7280'}}>To Use</div>
+                                </div>
+                                <div>
+                                    <div style={{fontSize: '2rem', fontWeight: 700, color: '#059669'}}>Confident</div>
+                                    <div style={{fontSize: '0.875rem', color: '#6B7280'}}>Navigating</div>
+                                </div>
+                                <div>
+                                    <div style={{fontSize: '2rem', fontWeight: 700, color: '#059669'}}>Comfortable</div>
+                                    <div style={{fontSize: '0.875rem', color: '#6B7280'}}>Communicating</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Demo = () => {
+            return (
+                <section className="bg-light">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label">See It In Action</span>
+                            <h2 className="section-title">Watch Handi In Use</h2>
+                            <p className="section-subtitle">
+                                See how seniors and volunteers interact with the Handi platform to make a real difference.
+                            </p>
+                        </div>
+
+                        <div style={{maxWidth: '900px', margin: '0 auto', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px rgba(255, 107, 61, 0.15)'}}>
+                            <iframe
+                                src="https://streamable.com/e/v6cgaa"
+                                frameBorder="0"
+                                style={{width: '100%', height: '600px', display: 'block'}}
+                                allowFullScreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const PlatformInterface = () => {
+            return (
+                <section className="bg-white">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label">Platform Design</span>
+                            <h2 className="section-title">Intuitive & User-Friendly Interface</h2>
+                            <p className="section-subtitle">
+                                Built with seniors in mind, our platform makes it simple to request help, track activities, and connect with volunteers.
+                            </p>
+                        </div>
+
+                        <div style={{maxWidth: '1000px', margin: '0 auto'}}>
+                            <img src="images/app_interface.png" alt="Handi App Interface" style={{width: '100%', height: 'auto', borderRadius: '1.5rem', boxShadow: '0 20px 40px rgba(255, 107, 61, 0.15)'}} />
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const BusinessModel = () => {
+            const partners = [
+                { type: 'Senior Centers', value: 'Provide service as part of member benefits', revenue: 'Gain access to engaged seniors', icon: '🏢' },
+                { type: 'Hospitals', value: 'Reduce readmissions, promote patient independence', revenue: 'Partnership credibility, data for outcomes', icon: '🏥' },
+                { type: 'Insurance Companies', value: 'Improve member satisfaction, reduce care costs', revenue: 'Large-scale access to members (PMPM/PMPY)', icon: '🛡️' }
+            ];
+
+            return (
+                <section id="model" className="bg-white">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label">Business Model</span>
+                            <h2 className="section-title">Sustainable Impact Through Partnerships</h2>
+                            <p className="section-subtitle">
+                                Handi helps organizations improve senior health outcomes and lower costs through technology-enabled volunteer connections.
+                            </p>
+                        </div>
+
+                        <div className="three-col mb-8">
+                            {partners.map((partner, index) => (
+                                <div key={index} style={{background: 'linear-gradient(to bottom, var(--light), white)', padding: '2rem', borderRadius: '1.5rem', border: '1px solid #E5E7EB'}}>
+                                    <div style={{fontSize: '3.5rem', marginBottom: '1rem'}}>{partner.icon}</div>
+                                    <h3 style={{fontFamily: 'Bricolage Grotesque', fontWeight: 700, fontSize: '1.5rem', marginBottom: '1.5rem'}}>{partner.type}</h3>
+                                    <div style={{marginBottom: '1.5rem'}}>
+                                        <div style={{fontSize: '0.875rem', fontWeight: 600, color: 'var(--primary)', marginBottom: '0.5rem'}}>Value Proposition</div>
+                                        <p style={{color: '#4B5563'}}>{partner.value}</p>
+                                    </div>
+                                    <div>
+                                        <div style={{fontSize: '0.875rem', fontWeight: 600, color: 'var(--secondary)', marginBottom: '0.5rem'}}>Revenue Model</div>
+                                        <p style={{color: '#4B5563'}}>{partner.revenue}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="bg-primary-gradient" style={{padding: '3rem', borderRadius: '1.5rem'}}>
+                            <h3 style={{fontFamily: 'Bricolage Grotesque', fontWeight: 700, fontSize: '2rem', marginBottom: '2rem', textAlign: 'center'}}>Go-To-Market Strategy</h3>
+                            <div className="three-col">
+                                <div style={{background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', borderRadius: '1rem', padding: '1.5rem', border: '1px solid rgba(255,255,255,0.3)'}}>
+                                    <div style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem'}}>Phase 1: Pilot</div>
+                                    <div style={{fontSize: '0.875rem', opacity: 0.8, marginBottom: '1rem'}}>Months 1-6</div>
+                                    <ul style={{fontSize: '0.875rem', opacity: 0.9, lineHeight: 1.6}}>
+                                        <li>• Launch with Worcester Senior Center</li>
+                                        <li>• Partner with local hospital</li>
+                                        <li>• Collect feedback from 50-100 seniors</li>
+                                    </ul>
+                                </div>
+                                <div style={{background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', borderRadius: '1rem', padding: '1.5rem', border: '1px solid rgba(255,255,255,0.3)'}}>
+                                    <div style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem'}}>Phase 2: Expansion</div>
+                                    <div style={{fontSize: '0.875rem', opacity: 0.8, marginBottom: '1rem'}}>Months 6-12</div>
+                                    <ul style={{fontSize: '0.875rem', opacity: 0.9, lineHeight: 1.6}}>
+                                        <li>• Partner with MA senior centers</li>
+                                        <li>• Expand to public libraries</li>
+                                        <li>• Co-market through AARP chapters</li>
+                                    </ul>
+                                </div>
+                                <div style={{background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', borderRadius: '1rem', padding: '1.5rem', border: '1px solid rgba(255,255,255,0.3)'}}>
+                                    <div style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem'}}>Phase 3: Growth</div>
+                                    <div style={{fontSize: '0.875rem', opacity: 0.8, marginBottom: '1rem'}}>Year 2+</div>
+                                    <ul style={{fontSize: '0.875rem', opacity: 0.9, lineHeight: 1.6}}>
+                                        <li>• Partner with healthcare systems</li>
+                                        <li>• Engage insurance providers</li>
+                                        <li>• Integrate with telehealth platforms</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Competitors = () => {
+            const competitors = [
+                { name: 'Be My Eyes', focus: 'Visual assistance for blind users', tech: 'Mobile + camera', advantage: 'Handi supports broader senior needs (admin tasks, companionship)' },
+                { name: 'Papa', focus: 'Paid companionship and errands', tech: 'App-based', advantage: 'Handi mobilizes volunteers, reducing cost' },
+                { name: 'GetSetUp', focus: 'Online learning for seniors', tech: 'Digital classes', advantage: 'Handi helps non-tech-savvy seniors using voice assistance' },
+                { name: 'CareYaya', focus: 'Caregiver matching platform', tech: 'Web/app', advantage: 'Handi focuses on community volunteering, not paid caregiving' }
+            ];
+
+            return (
+                <section className="bg-light">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label">Market Position</span>
+                            <h2 className="section-title">
+                                Where Others Focus on Transactions,<br />
+                                <span className="gradient-text">Handi Builds Human Connections</span>
+                            </h2>
+                        </div>
+
+                        <div className="two-col">
+                            {competitors.map((competitor, index) => (
+                                <div key={index} className="card">
+                                    <h3 className="card-title">{competitor.name}</h3>
+                                    <div style={{fontSize: '0.875rem', color: '#6B7280', marginBottom: '1rem'}}>{competitor.focus} • {competitor.tech}</div>
+                                    <div style={{background: 'linear-gradient(to right, rgba(255,107,61,0.1), rgba(255,138,91,0.1))', padding: '1rem', borderRadius: '1rem', border: '1px solid rgba(255,107,61,0.2)'}}>
+                                        <div style={{fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary)', marginBottom: '0.25rem'}}>HANDI ADVANTAGE</div>
+                                        <p style={{fontSize: '0.875rem'}}>{competitor.advantage}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Team = () => {
+            return (
+                <section id="team" className="bg-white">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-label">The Team</span>
+                            <h2 className="section-title">Meet the People Behind Handi</h2>
+                        </div>
+
+                        <div className="team-grid">
+                            <div className="team-member">
+                                <div className="team-photo">
+                                    <div className="team-photo-inner">
+                                        <img src="images/richardjuknavorian.jpg" alt="Richard Juknavorian" />
+                                    </div>
+                                </div>
+                                <h3 className="team-name">Richard Juknavorian</h3>
+                                <p className="team-role">Mentor</p>
+                            </div>
+
+                            <div className="team-member">
+                                <div className="team-photo">
+                                    <div className="team-photo-inner">
+                                        <img src="images/benedicta.jpg" alt="Benedicta Agyemang-Brantuo" />
+                                    </div>
+                                </div>
+                                <h3 className="team-name">Benedicta Agyemang-Brantuo</h3>
+                                <p className="team-role">Founder & CEO</p>
+                            </div>
+
+                            <div className="team-member">
+                                <div className="team-photo">
+                                    <div className="team-photo-inner">
+                                        <img src="images/kofiadom.jpg" alt="Kofi Adom" />
+                                    </div>
+                                </div>
+                                <h3 className="team-name">Kofi Adom</h3>
+                                <p className="team-role">Software Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Contact = () => {
+            return (
+                <section id="contact" className="cta-section">
+                    <div className="cta-content container">
+                        <h2>Ready to Make a Difference?</h2>
+                        <p>
+                            Join us in creating a world where every senior can live independently with dignity and support from their community.
+                        </p>
+                        <div className="cta-buttons">
+                            <a href="mailto:contact@handitech.com" className="btn btn-white">Partner With Us</a>
+                            <a href="#" className="btn btn-outline">Become a Volunteer</a>
+                        </div>
+
+                        <div className="footer-logo">
+                            <div>
+                                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '0.5rem'}}>
+                                    <div className="footer-logo-icon">
+                                        <img src="images/logo.jpg" alt="Handi Logo" />
+                                    </div>
+                                    <span style={{fontFamily: 'Bricolage Grotesque', fontWeight: 700, fontSize: '1.5rem'}}>Handi</span>
+                                </div>
+                                <p className="footer-tagline">Connecting Care, Creating Community</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const App = () => {
+            return (
+                <div>
+                    <Navigation />
+                    <Hero />
+                    <Problem />
+                    <Data />
+                    <Solution />
+                    <Demo />
+                    <PlatformInterface />
+                    <BusinessModel />
+                    <Competitors />
+                    <Team />
+                    <Contact />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
